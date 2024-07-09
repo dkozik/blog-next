@@ -1,0 +1,29 @@
+.ArticlePlate {
+  display: flex;
+
+  .Content {
+    margin-left: 1rem;
+
+    .Title {
+      font-size: 2rem;
+      font-weight: 600;
+
+      max-width: 400px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      display: inline-block;
+    }
+
+    .Body {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
+    }
+
+    .Actions {
+      margin-top: 1rem;
+    }
+  }
+}
