@@ -2,4 +2,16 @@
   & > div:not(:first-child) {
     margin-top: 1rem;
   }
+
+  .MoreButton {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+
+    & a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 12px;
+    }
+  }
 }

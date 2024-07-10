@@ -10,15 +10,17 @@ interface IOwnProps {
 }
 
 const Article: React.FC<IOwnProps> = (props) => {
-  const { id, imageSrc, body, title } = props.article;
+  const { id, imageThumbSrc, body, title } = props.article;
 
   return (
     <div className={styles.ArticlePlate}>
       <div>
-        <img src={imageSrc} />
+        <img src={imageThumbSrc} />
       </div>
       <div className={styles.Content}>
-        <div className={styles.Title}>{title}</div>
+        <div className={styles.Title}>
+          <Link href={`/article/${id}`}>{title}</Link>
+        </div>
         <div className={styles.Body}>{body}</div>
         <div className={styles.Actions}>
           <Link href={`/article/${id}`}>

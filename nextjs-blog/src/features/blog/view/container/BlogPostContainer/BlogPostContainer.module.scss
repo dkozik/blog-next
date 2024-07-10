@@ -1,0 +1,7 @@
+.BlogPostContainer {
+  & hr {
+    border-style: dashed;
+    border-bottom: none;
+    border-color: #aaa;
+  }
+}

@@ -13,6 +13,11 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       display: inline-block;
+
+      & a {
+        text-decoration: none;
+        color: inherit;
+      }
     }
 
     .Body {

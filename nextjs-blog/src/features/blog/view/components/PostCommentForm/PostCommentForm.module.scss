@@ -1,0 +1,27 @@
+.PostCommentForm {
+  display: flex;
+  flex-direction: column;
+
+  .Caption {
+    padding: 0.5rem 1rem;
+  }
+
+  .Content {
+    position: relative;
+    display: flex;
+    flex: 1;
+
+    & textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 0.5rem;
+      border-radius: 4px;
+    }
+  }
+
+  .ActionBar {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+}

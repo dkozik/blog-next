@@ -1,13 +1,16 @@
+import Head from "next/head";
 import { SWRConfig } from "swr";
 import React from "react";
 
 import "../styles/global.css";
 
 function App({ Component, pageProps }) {
-  // console.log("[App] pageProps.fallback: ", pageProps.fallback);
-
   return (
     <SWRConfig value={{ fallback: pageProps.fallback }}>
+      <Head>
+        <meta name="description" content="Super theme blogs here" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <style jsx>{`
         body {
           background: #fafafa;

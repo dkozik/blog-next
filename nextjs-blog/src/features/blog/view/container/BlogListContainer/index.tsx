@@ -6,14 +6,24 @@ import styles from "./BlogListContainer.module.scss";
 
 interface IOwnProps {
   dataFrames: Array<IListResponse<IArticle>>;
+  onShowMoreClicked(): void;
 }
 
 const BlogListContainer: React.FC<IOwnProps> = (props) => {
-  const { dataFrames } = props;
+  const { dataFrames, onShowMoreClicked } = props;
 
   const normalizedDataFrames = React.useMemo(() => {
     return Array.isArray(dataFrames) ? dataFrames : [dataFrames];
   }, [dataFrames]);
+
+  const handleShowMoreClick = React.useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      onShowMoreClicked();
+    },
+    [onShowMoreClicked],
+  );
 
   return (
     <div className={styles.BlogListContainer}>
@@ -23,6 +33,11 @@ const BlogListContainer: React.FC<IOwnProps> = (props) => {
           dataFrameResponse={dataFrame}
         />
       ))}
+      <div className={styles.MoreButton}>
+        <a href="" onClick={handleShowMoreClick}>
+          Read more
+        </a>
+      </div>
     </div>
   );
 };

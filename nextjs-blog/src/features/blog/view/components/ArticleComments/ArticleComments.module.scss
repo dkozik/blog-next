@@ -1,0 +1,15 @@
+.ArticleComments {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+
+  & > div:not(:first-child) {
+    margin-top: 1rem;
+  }
+
+  & div {
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 4px;
+  }
+}
