@@ -9,6 +9,8 @@
     "@hookform/resolvers": "^3.9.0",
     "@ndaidong/txtgen": "^4.0.1",
     "clsx": "^2.1.1",
+    "html-to-react": "^1.7.0",
+    "html-to-text": "^9.0.5",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0",

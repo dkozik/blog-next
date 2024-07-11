@@ -2,6 +2,7 @@ html,
 body {
   padding: 1rem;
   margin: 0;
+  background-color: rgb(247, 247, 247);
   font-family:
     Inter,
     -apple-system,

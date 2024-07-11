@@ -1,7 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { mockData } from "@/core/mockData";
+import { CMS } from "@/cms";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const { page = 1, pageSize = 10 } = req.query;
 
   if (+pageSize > 20) {
@@ -15,12 +19,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     return res.status(400).json({ message: `Invalid page number.` });
   }
 
-  const pageFrame = mockData.slice(offset, offset + +pageSize);
+  const articlesResponse = await CMS.instance.loadArticles(+page, +pageSize);
 
-  return res.status(200).json({
-    page,
-    pageSize,
-    total: mockData.length,
-    data: pageFrame,
-  });
+  if (articlesResponse.error?.status) {
+    return res
+      .status(articlesResponse.error?.status)
+      .json(articlesResponse.error);
+  }
+
+  return res.status(200).json(articlesResponse.data);
 }

@@ -1,6 +1,13 @@
 .ArticlePlate {
   display: flex;
 
+  .Thumb {
+    & img {
+      width: 300px;
+      border-radius: 4px;
+    }
+  }
+
   .Content {
     margin-left: 1rem;
 
@@ -8,7 +15,7 @@
       font-size: 2rem;
       font-weight: 600;
 
-      max-width: 400px;
+      max-width: 40rem;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -24,7 +31,8 @@
       overflow: hidden;
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 4;
+      -webkit-line-clamp: 6;
+      white-space: pre-wrap;
     }
 
     .Actions {

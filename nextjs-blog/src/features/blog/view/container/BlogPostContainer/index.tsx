@@ -43,11 +43,13 @@ const BlogPostContainer: React.FC<IOwnProps> = (props) => {
 
   return (
     <div className={styles.BlogPostContainer}>
-      <SingleArticle article={article} />
-      <hr />
-      <ArticleComments comments={articleComments} />
-      <div>
-        <PostCommentForm onSubmit={submit} />
+      <div className={styles.Content}>
+        <SingleArticle article={article} />
+        <hr />
+        <ArticleComments comments={articleComments} />
+        <div>
+          <PostCommentForm onSubmit={submit} />
+        </div>
       </div>
     </div>
   );

@@ -1,24 +1,29 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { addComment, mockDataComments, mockDataIndex } from "@/core/mockData";
-import { IPostArticleCommentRequest } from "@/api/types/request";
+import { CMS } from "@/cms";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const { articleId } = req.query as { articleId: string };
 
-  // Break before start working for not found articles
-  if (!mockDataIndex.hasOwnProperty(articleId)) {
-    return res.status(404).json({
-      message: `Article with id ${articleId} not found.`,
-    });
-  }
-
   if (req.method === "POST") {
-    // Post new comment here
-    const { body } = req.body as IPostArticleCommentRequest;
-    addComment(articleId, body);
-    // mockDataComments
-    return res.status(200).send(mockDataComments);
+    if (!Boolean(req.body.body)) {
+      return res.status(400).send({
+        message: "Message body cannot be empty",
+      });
+    }
+
+    await CMS.instance.postComment(articleId, req.body);
+    return res.status(200).send({ status: 200 });
   }
 
-  return res.status(200).json(mockDataComments[articleId]);
+  const { data: comments, error } =
+    await CMS.instance.loadArticleComments(articleId);
+
+  if (error?.status) {
+    return res.status(error?.status).json(error);
+  }
+
+  return res.status(200).json(comments);
 }

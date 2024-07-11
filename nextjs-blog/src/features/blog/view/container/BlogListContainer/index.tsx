@@ -12,8 +12,16 @@ interface IOwnProps {
 const BlogListContainer: React.FC<IOwnProps> = (props) => {
   const { dataFrames, onShowMoreClicked } = props;
 
-  const normalizedDataFrames = React.useMemo(() => {
-    return Array.isArray(dataFrames) ? dataFrames : [dataFrames];
+  const dataFramesCache = React.useMemo(() => {
+    const normalizedDataFrames = Array.isArray(dataFrames)
+      ? dataFrames
+      : [dataFrames];
+    const lastFrame = normalizedDataFrames[normalizedDataFrames.length - 1];
+
+    return {
+      normalizedDataFrames,
+      hasMore: lastFrame.hasMore,
+    };
   }, [dataFrames]);
 
   const handleShowMoreClick = React.useCallback(
@@ -27,17 +35,19 @@ const BlogListContainer: React.FC<IOwnProps> = (props) => {
 
   return (
     <div className={styles.BlogListContainer}>
-      {normalizedDataFrames.map((dataFrame) => (
+      {dataFramesCache.normalizedDataFrames.map((dataFrame) => (
         <ArticlesDataFrame
           key={`frame-${dataFrame.page}`}
           dataFrameResponse={dataFrame}
         />
       ))}
-      <div className={styles.MoreButton}>
-        <a href="" onClick={handleShowMoreClick}>
-          Read more
-        </a>
-      </div>
+      {dataFramesCache.hasMore ? (
+        <div className={styles.MoreButton}>
+          <a href="" onClick={handleShowMoreClick}>
+            Read more
+          </a>
+        </div>
+      ) : null}
     </div>
   );
 };

@@ -1,4 +1,12 @@
 .BlogPostContainer {
+  display: flex;
+  justify-content: center;
+
+  .Content {
+    max-width: 800px;
+    //padding: 0 260px;
+  }
+
   & hr {
     border-style: dashed;
     border-bottom: none;

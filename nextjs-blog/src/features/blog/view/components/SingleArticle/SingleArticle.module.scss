@@ -1,4 +1,16 @@
 .SingleArticle {
+  display: flex;
+  flex-direction: column;
+
+  .Image {
+    width: 100%;
+
+    & img {
+      width: 100%;
+      border-radius: 4px;
+    }
+  }
+
   .Title {
     font-size: 24px;
     font-weight: 600;
@@ -9,5 +21,36 @@
     margin-top: 1rem;
     font-size: 16px;
     white-space: pre-wrap;
+    position: relative;
+
+    & img {
+      max-width: 100%;
+      border-radius: 2px;
+    }
+
+    & figure:global(.table) {
+      display: flex;
+      flex: 1;
+      overflow-x: hidden;
+      //max-width: 80%;
+      //width: 100px;
+
+      @media (max-width: 600px) {
+        width: 70vw;
+        overflow-x: auto;
+      }
+
+      & table {
+        table-layout: fixed;
+
+        & td {
+          width: auto;
+        }
+
+        & td {
+          width: auto;
+        }
+      }
+    }
   }
 }
